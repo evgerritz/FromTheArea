@@ -1,8 +1,9 @@
+import enum
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from flask_restful import reqparse, Api, Resource
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float, Enum
 from sqlalchemy.orm import declarative_base, relationship
 
 app = Flask(__name__)
@@ -22,6 +23,9 @@ class Message(Resource):
         return {"message": 'Hello World'}
 api.add_resource(Message, '/api/hello')
 
+class TypeEnum(enum.Enum):
+    restaurant = 1
+    bar = 2
 
 '''DO NOT RUN UNCOMMENT AND RUN THIS CODE
 OR IT WILL BE A PAIN TO CHANGE. THESE ARE
@@ -38,6 +42,15 @@ class Venue(Base, db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
     rating = Column(Float)
+
+class Business(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    typ = db.Column(db.Enum(TypeEnum))
+    address = db.Columm(db.String(100), nummable=False)
+    lat = db.Column(db.Float, nullable=False)
+    long = db.Column(db.Float, nullable=False)
+    
 
 with app.app_context():
     db.create_all()
