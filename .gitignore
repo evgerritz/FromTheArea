@@ -1,3 +1,4 @@
 node_modules/
 backend/Pipfile*
+backend/__pycache__/
 
