@@ -3,6 +3,11 @@ CPSC 439/539 (Software Engineering) project with Kenan Collignon, Ethan Dong, Ev
 
 ## Installation and Building
 
+### Backend
+
+###### Backend commands:
+- 'flask run --debug'
+
 ### Frontend
 
 You will need Node.js version 18 or higher. You can install it ![here](https://nodejs.org/en/).
