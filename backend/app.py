@@ -1,10 +1,14 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import declarative_base, relationship
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'somerandomstring69'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fromthearea.db'
+
+
 db = SQLAlchemy(app)
 Base = declarative_base()
 
