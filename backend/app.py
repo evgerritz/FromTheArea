@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from flask_restful import reqparse, Api, Resource
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import declarative_base, relationship
 
@@ -8,9 +9,19 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'somerandomstring69'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fromthearea.db'
 
-
 db = SQLAlchemy(app)
 Base = declarative_base()
+
+# create the API
+api = Api(app)
+
+parser = reqparse.RequestParser()
+parser.add_argument('task')
+class Message(Resource):
+    def get(self):
+        return {"message": 'Hello World'}
+api.add_resource(Message, '/api/hello')
+
 
 '''DO NOT RUN UNCOMMENT AND RUN THIS CODE
 OR IT WILL BE A PAIN TO CHANGE. THESE ARE
@@ -32,6 +43,6 @@ with app.app_context():
     db.create_all()
 '''
 
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
