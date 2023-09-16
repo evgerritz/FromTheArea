@@ -10,7 +10,7 @@ const Header = () => {
       <Container className={styles.headerContainer}>
         <p className={styles.headerTitle}>
           <Link href="/">
-            FromTheArea(Ethan)(Evan)
+            FromTheArea
           </Link>
         </p>
       </Container>
