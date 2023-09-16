@@ -23,11 +23,16 @@ class Message(Resource):
         return {"message": 'Hello World'}
 api.add_resource(Message, '/api/hello')
 
+@app.route('/')
+def home():
+    return 'Home Page Route'
+
 class TypeEnum(enum.Enum):
     restaurant = 1
     bar = 2
 
-'''DO NOT RUN UNCOMMENT AND RUN THIS CODE
+'''
+DO NOT RUN UNCOMMENT AND RUN THIS CODE
 OR IT WILL BE A PAIN TO CHANGE. THESE ARE
 SHORT EXAMPLES OF A SQLALCHEMY DB THAT WE 
 WILL USE. NEED TO FIGURE OUT DATABASE SCHEMA
@@ -50,7 +55,6 @@ class Business(db.Model):
     address = db.Columm(db.String(100), nummable=False)
     lat = db.Column(db.Float, nullable=False)
     long = db.Column(db.Float, nullable=False)
-    
 
 with app.app_context():
     db.create_all()
